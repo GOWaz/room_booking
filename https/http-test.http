@@ -1,0 +1,92 @@
+###
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "GOWaz",
+  "password": "password",
+  "role": "ADMIN"
+}
+
+> {%
+    client.global.set("auth-token", response.body.access_token);
+%}
+
+###
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "GOWaz",
+  "password": "password"
+}
+
+> {%
+    client.global.set("auth-token", response.body.access_token);
+%}
+
+###
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "tahseen",
+  "password": "password",
+  "role": "USER"
+}
+
+> {%
+    client.global.set("auth-token", response.body.access_token);
+%}
+
+
+###
+POST http://localhost:8080/rooms/add
+Content-Type: application/json
+Authorization: Bearer {{auth-token}}
+
+{
+  "roomNumber": "1A",
+  "capacity": 4,
+  "price": 0.4
+}
+
+###
+POST http://localhost:8080/rooms/add
+Content-Type: application/json
+Authorization: Bearer {{auth-token}}
+
+{
+  "roomNumber": "2A",
+  "capacity": 4,
+  "price": 129.88
+}
+
+###
+POST http://localhost:8080/bookings
+Content-Type: application/json
+Authorization: Bearer {{auth-token}}
+
+{
+  "roomId": 1,
+  "checkInDate": "2025-04-22",
+  "checkOutDate": "2025-04-28"
+}
+
+###
+POST http://localhost:8080/bookings
+Content-Type: application/json
+Authorization: Bearer {{auth-token}}
+
+{
+  "customerName": "Tahseen",
+  "roomId": 1,
+  "checkInDate": "2025-04-23",
+  "checkOutDate": "2025-04-30"
+}
+
+
+###
+PUT http://localhost:8080/bookings/cancel/1
+Content-Type: application/x-www-form-urlencoded
+Authorization: Bearer {{auth-token}}
