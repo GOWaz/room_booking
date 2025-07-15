@@ -40,7 +40,8 @@ public class SecurityConfiguration {
                                 "/h2-console/**",       // H2 console
                                 "/v3/api-docs/**",      // OpenAPI docs
                                 "/swagger-ui/**",       // Swagger UI
-                                "/actuator/health"      // Health check
+                                "/actuator/health",      // Health check
+                                "/actuator/prometheus"
                         ).permitAll()
 
                         // Room endpoints
